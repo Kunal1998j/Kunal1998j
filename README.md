@@ -1,35 +1,28 @@
-import random
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting...</title>
+    <script>
+        function rotateLink() {
+            // Your base link
+            const baseLink = "https://city1.maksoftbox.com/MarketingEnquiry/EnquiryQRCode?Id=df80e48d-f9f5-48a2-8341-e652ac165f28&SecurityStamp=30099c34-a393-438c-bf6d-71d3fc048c45";
+            
+            // Get current time in minutes to create a unique rotation ID
+            const now = new Date();
+            const rotationId = now.getFullYear() + "" + now.getMonth() + "" + now.getDate() + "" + now.getHours() + "" + now.getMinutes();
 
-class WheelOfWins:
-    def __init__(self):
-        self.prizes = ["Coins", "Discounts", "Vouchers", "Special Grand Prizes"]
-        self.players = {}  # Store player data {name: winnings}
+            // Append the rotation ID to the link so it "refreshes" every minute
+            const finalLink = baseLink + "&rot=" + rotationId;
 
-    def spin_wheel(self):
-        return random.choice(self.prizes)
+            // Redirect the user
+            window.location.href = finalLink;
+        }
 
-    def add_player(self, name):
-        self.players[name] = 0
-
-    def update_score(self, name, prize):
-        self.players[name] += 1
-
-    def display_leaderboard(self):
-        sorted_players = sorted(self.players.items(), key=lambda x: x[1], reverse=True)
-        print("Leaderboard:")
-        for i, (player, score) in enumerate(sorted_players, start=1):
-            print(f"{i}. {player}: {score} wins")
-
-# Sample usage
-if __name__ == "__main__":
-    game = WheelOfWins()
-    game.add_player("Player 1")
-    game.add_player("Player 2")
-
-    for _ in range(5):  # Simulate 5 spins
-        winner = random.choice(list(game.players.keys()))
-        prize = game.spin_wheel()
-        game.update_score(winner, prize)
-        print(f"{winner} wins {prize}")
-
-    game.display_leaderboard()
+        // Run on page load
+        window.onload = rotateLink;
+    </script>
+</head>
+<body>
+    <p>Redirecting you to the latest secure link...</p>
+</body>
+</html>
